@@ -6,12 +6,12 @@ const HEALTH_PORT = 3000 // Port for health check endpoint
 
 // Helper function to log with timestamp
 function logWithTime(message) {
-    const timestamp = new Date().toISOString()
+    const timestamp = new Date().toLocaleString()
     console.log(`[${timestamp}] ${message}`)
 }
 
 function logErrorTime(message) {
-    const timestamp = new Date().toISOString()
+    const timestamp = new Date().toLocaleString()
     console.error(`[${timestamp}] ${message}`)
 }
 
