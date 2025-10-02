@@ -17,6 +17,21 @@ npm start
 
 The server will listen on port 5001 for incoming TCP connections from GPS trackers.
 
+## PM2 Process Management
+
+To run the server with PM2 for production:
+
+```bash
+npm run pm2:start
+```
+
+Other PM2 commands:
+
+- `npm run pm2:stop` - Stop the server
+- `npm run pm2:restart` - Restart the server
+- `npm run pm2:delete` - Delete the PM2 process
+- `npm run pm2:logs` - View logs
+
 ## Data Format
 
 The server expects data in CSV-like format from the EV02 tracker, e.g.:
