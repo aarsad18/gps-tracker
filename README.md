@@ -15,7 +15,18 @@ Start the server:
 npm start
 ```
 
-The server will listen on port 5001 for incoming TCP connections from GPS trackers.
+The server will listen on port 6010 for incoming TCP connections from GPS trackers and on port 3000 for HTTP health checks.
+
+## Health Check
+
+The server provides a health check endpoint at `http://localhost:3000/health` that returns a JSON response indicating the server status.
+
+Example response:
+```json
+{
+  "status": "ok"
+}
+```
 
 ## PM2 Process Management
 
@@ -44,7 +55,8 @@ Adjust the parsing logic in `server.js` based on the exact protocol used by your
 
 ## Configuration
 
-- Port: Change `PORT` in `server.js` if needed.
+- TCP Port: Change `PORT` in `server.js` if needed (default: 6010).
+- Health Check Port: Change `HEALTH_PORT` in `server.js` if needed (default: 3000).
 - Parsing: Modify the `socket.on('data')` handler to match your device's data format.
 
 ## License

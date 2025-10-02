@@ -1,6 +1,8 @@
 const net = require('net')
+const http = require('http')
 
 const PORT = 6010 // Common port for GPS trackers, adjust if needed for EV02
+const HEALTH_PORT = 3000 // Port for health check endpoint
 
 const server = net.createServer((socket) => {
     console.log(`Client connected from ${socket.remoteAddress}:${socket.remotePort}`)
@@ -40,4 +42,19 @@ const server = net.createServer((socket) => {
 
 server.listen(PORT, () => {
     console.log(`GPS Tracker TCP Server listening on port ${PORT}`)
+})
+
+// HTTP server for health checks
+const httpServer = http.createServer((req, res) => {
+    if (req.url === '/health') {
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ status: 'ok' }))
+    } else {
+        res.writeHead(404)
+        res.end()
+    }
+})
+
+httpServer.listen(HEALTH_PORT, () => {
+    console.log(`Health check server listening on port ${HEALTH_PORT}`)
 })
